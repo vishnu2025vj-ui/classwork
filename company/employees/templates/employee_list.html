@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Directory</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .employee {
+            background: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        .full-time {
+            color: green;
+            font-weight: bold;
+        }
+        .part-time {
+            color: red;
+            font-weight: bold;
+        }
+        .empty {
+            color: gray;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>Employee Directory</h1>
+
+    {% if employees %}
+        {% for emp in employees %}
+            <div class="employee">
+                <p><strong>Name:</strong> {{ emp.name }}</p>
+                <p><strong>Title:</strong> {{ emp.title }}</p>
+                <p><strong>Salary:</strong> ${{ emp.salary }}</p>
+                {% if emp.full_time %}
+                    <p class="full-time">Full-Time</p>
+                {% else %}
+                    <p class="part-time">Part-Time</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="empty">No employees available.</p>
+    {% endif %}
+</body>
+</html>
