@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #e6f7e6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h2 { color: green; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Thank you for logging in!</h2>
+    <p>Your email: <strong>{{ email }}</strong></p>
+  </div>
+</body>
+</html>
