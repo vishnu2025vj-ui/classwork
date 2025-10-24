@@ -6,55 +6,64 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f0f2f5;
+      background: #f0f0f0;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
     }
-    .container {
+    form {
       background: #fff;
-      padding: 30px;
-      border-radius: 10px;
+      padding: 25px;
+      border-radius: 8px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      width: 350px;
+      width: 300px;
     }
-    h2 { text-align: center; color: #333; }
-    label { display: block; margin-top: 15px; font-weight: bold; }
     input {
-      width: 100%; padding: 10px; margin-top: 5px;
-      border: 1px solid #ccc; border-radius: 5px;
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
     }
-    .error { color: red; font-size: 14px; }
     button {
-      width: 100%; padding: 10px; background: #007bff; border: none;
-      color: white; font-size: 16px; margin-top: 20px; border-radius: 5px;
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      border-radius: 5px;
       cursor: pointer;
     }
-    button:hover { background: #0056b3; }
+    .error {
+      color: red;
+      font-size: 0.9em;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
+  <form method="post">
+    {% csrf_token %}
     <h2>Login</h2>
 
-    <form method="POST">
-      {% csrf_token %}
-      
-      <label>Email:</label>
-      <input type="text" name="email" value="{{ email|default:'' }}">
-      {% if errors.email %}
-        <div class="error">{{ errors.email }}</div>
-      {% endif %}
+    <label>Username:</label>
+    <input type="text" name="username" value="{{ username|default:'' }}">
+    {% if errors.username %}
+      <div class="error">{{ errors.username }}</div>
+    {% endif %}
 
-      <label>Password:</label>
-      <input type="password" name="password" value="{{ password|default:'' }}">
-      {% if errors.password %}
-        <div class="error">{{ errors.password }}</div>
-      {% endif %}
+    <label>Email:</label>
+    <input type="text" name="email" value="{{ email|default:'' }}">
+    {% if errors.email %}
+      <div class="error">{{ errors.email }}</div>
+    {% endif %}
 
-      <button type="submit">Login</button>
-    </form>
-  </div>
+    <label>Password:</label>
+    <input type="password" name="password" value="{{ password|default:'' }}">
+    {% if errors.password %}
+      <div class="error">{{ errors.password }}</div>
+    {% endif %}
+
+    <button type="submit">Login</button>
+  </form>
 </body>
 </html>
