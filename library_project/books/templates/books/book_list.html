@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Book List</title>
+</head>
+<body>
+    <h1>Library Book List</h1>
+    <a href="{% url 'add_book' %}">Add New Book</a>
+    <hr>
+    <ul>
+        {% for book in page_obj %}
+            <li>
+                <b>{{ book.title }}</b> by {{ book.author }} ({{ book.year }})
+                — <a href="{% url 'edit_book' book.pk %}">Edit</a>
+                — <a href="{% url 'delete_book' book.pk %}">Delete</a>
+            </li>
+        {% empty %}
+            <p>No books added yet.</p>
+        {% endfor %}
+    </ul>
+
+    <div>
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
+</body>
+</html>
